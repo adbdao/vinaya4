@@ -54,27 +54,6 @@
             background: -webkit-linear-gradient(top, #888 0%, #555 15%, #333 85%, #111 100%);
             background: linear-gradient(top, #888 0%, #555 15%, #333 85%, #111 100%);
         }
-        /*淺色主題*/
-        /*.big {
-            background: tan;
-            color: brown;
-            font-size: 18pt;
-            font-family: '標楷體';
-            line-height: 36pt;
-        }
-        
-        a {
-            color: black;
-            font-size: 14pt;
-            text-decoration: none;
-        }
-        
-        .small {
-            line-height: 30pt;
-            border: 2px solid #000;
-            background: -webkit-linear-gradient(top, #ffe 0%, #ddd 15%, #bbb 85%, #777 100%);
-            background: linear-gradient(top, #ffe 0%, #ddd 15%, #bbb 85%, #777 100%);
-        }*/
         
         .small:hover {
             border-color: green lime lime green;
@@ -91,7 +70,7 @@
         }
     </style>
     <script>
-var ArrLi = ["戒律書畾.adb.ini","一百七十八單提法.txt","yugasidi4.adb.ini","wxzj.adb.ini","vinayanp.adb.ini","vinaya2.adb.ini","v5ok.js","v5Index.txt","v5.txt","v4search.html","v4ok.js","v4Index.txt","v4.txt","v4.js","taisho.adb.ini","T1428.xml","README.md","paauk.adb.ini","ght.adb.ini","cbeta2011.adb.ini","bookmark.bmk","aodbs.adb.ini","accelon3.ini","accelon3 (2).ini"]
+var ArrLi = ["空中安立法相.txt","四分律綱目檢索.html","五分律綱目檢索.html","一百七十八單提法.txt","zs3.txt","zs2.txt","zs.txt","wzHKzs4.txt","wzHKTW.txt","wzHKlw4.txt","wzHKlw3.txt","wzHK4.txt","wzHK3.txt","wzHK.txt","wz3.txt","wz2.txt","wz.txt","v5search.xml","v5ok.js","v5Index.txt","v5.txt","v4search.xml","v4ok.js","v4Index.txt","v4.txt","v4.js","T1428.xml","T1421.xml","szc4.txt","szc3.txt","szc2.txt","szc.txt","README.md","15614_wzHK4.txt","15601_wzHKlw4.txt"]
         window.onload = function () {
             // 以傳統js語法，不用jQuery 或 jquery.mobile，動態插入網址，這樣，所有瀏覽器都支援
             // 因為不用ol li 所以自訂 有序清單 的數字
@@ -109,6 +88,16 @@ var ArrLi = ["戒律書畾.adb.ini","一百七十八單提法.txt","yugasidi4.ad
                 mula.appendChild(g)
                 j++
             }
+
+            // 淺色主題
+            nocolor.onclick = function () {
+                if (!color.innerHTML) {
+                    color.innerHTML = ".big { background: tan; color: brown; font-size: 18pt; font-family: '標楷體'; line-height: 36pt; text-align: center;}a { color: black; font-size: 14pt; text-decoration: none;}.small { line-height: 30pt; border: 2px solid peru; background: -webkit-linear-gradient(top, #ffe 0%, #ddd 15%, #bbb 85%, #777 100%); background: linear-gradient(top, #ffe 0%, #ddd 15%, #bbb 85%, #777 100%);}.small:hover { border-color: green lime lime green; border-width: 2px; border-style: solid; background: greenyellow;}.small:active { border-color: indigo #f3f #f6f indigo; border-width: 3px; border-style: solid; background: pink;} body {background: -webkit-linear-gradient(left, peru 0.00%, gold 90.00%);background: linear-gradient(left, peru 0.00%, gold 90.00%);}"
+                } else {
+                    color.innerHTML = ''
+                }
+            }
+
         }
         // 後來檔案太多了，所以想要作「篩選按鈕」
         function MyIni(a) {
@@ -134,6 +123,7 @@ var ArrLi = ["戒律書畾.adb.ini","一百七十八單提法.txt","yugasidi4.ad
         }
     </script>
     <style id="search_style"></style>
+    <style id="color"></style>
 </head>
 
 <body>
@@ -141,10 +131,10 @@ var ArrLi = ["戒律書畾.adb.ini","一百七十八單提法.txt","yugasidi4.ad
         <h1 class="big">四分律五分律等律藏綱目
             <input type="text" id="search" style="height:14pt;" placeholder="輸入關鍵字查詢" onkeyup="dt()">
             <!--後來檔案太多了，所以想要作「篩選按鈕」-->
-            <input id="Acc" type="button" class="pink" value="篩選出綱目檢索" onclick="MyIni('.htm')">
-            <input id="cbr" type="button" class="pink" value="篩選出CBReader目錄" onclick="MyIni('.T14')">
-            <input id="cbr" type="button" class="pink" value="篩選出四分律原文" onclick="MyIni('.v4.t')">
-            <input id="cbr" type="button" class="pink" value="篩選出五分律原文" onclick="MyIni('.v5.t')">
+            <input id="Acc" type="button" class="pink" value="篩選出綱目檢索" onclick="MyIni('htm')">
+            <input id="cbr" type="button" class="pink" value="篩選出CBReader目錄" onclick="MyIni('T14')">
+            <input id="index" type="button" class="pink" value="篩選出律藏原文" onclick="MyIni('index')">
+            <input id="nocolor" type="button" value="淺色主題">
             <!--最後再放</h1>才會在一行中呈現-->
         </h1>
         <div class="small"><a href="http://adbdao.blogspot.com/2018/07/blog-post.html">　↗　部落格的資料連結點　↗</a></div>
