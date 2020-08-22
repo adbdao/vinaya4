@@ -49,12 +49,12 @@ git commit --amend -m 'xxx'
 git init  
 git add README.md  
 git commit -m "first commit"  
-git remote add origin https://github.com/adbdao/mycoding.git  
+git remote add origin https://github.com/adbdao/vinaya4.git  
 git push -u origin master  
   
 2. 直接拉取  
-git clone https://github.com/adbdao/mycoding.git  
-git remote add origin https://github.com/adbdao/mycoding.git  
+git clone https://github.com/adbdao/vinaya4.git  
+git remote add origin https://github.com/adbdao/vinaya4.git  
 git push -u origin master  
   
 ---  
