@@ -8,9 +8,9 @@ var h = path.normalize('./')
 // 取得當前目錄下所有檔案及資料夾
 var d = fs.readdirSync(h)
 // 刪除.git這個目錄
-if (d[0] == '.git') {
-    d.shift()
-}
+// if (d[0] == '.git') {
+//     d.shift()
+// }
 // 倒轉陣列，以便中文筆劃多的檔在前
 d.reverse()
 
@@ -23,9 +23,9 @@ var k = index.split('\n')
 for (var i = 0; i < k.length; i++) {
     if (/var ArrLi\s?\=/.test(k[i])) {
         k[i] = 'var ArrLi = ["' + d.join('","') + '"]'
+        // 刪除不需要的檔
+        k[i] = k[i].replace(',".git"', '').replace(',"index.html"', '').replace(',"dirToIndex.js"', '').replace(',"dir.js"', '').replace(',"debug.log"', '')
     }
-    // 刪除不需要的檔
-    k[i]=k[i].replace(',"index.html"','').replace(',"dirToIndex.js"','').replace(',"dir.js"','')
 }
 
 // 用相對路徑寫入檔案
