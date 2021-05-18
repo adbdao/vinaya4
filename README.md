@@ -26,9 +26,6 @@ https://drive.google.com/drive/u/0/folders/13CjFXUassdCKPtt3rXQnIfX-vxteq09f
 > 但同一目錄中，要有taisho.adb或rdg2011.adb兩個《大正藏》的adb檔，才能連結到經文！  
   
 ---  
->> 授權方式：https://creativecommons.org/licenses/by-nc-sa/3.0/tw/  
-  
----  
 #### Git常用指令  
 * 刪除上一次推送。出問題時，使用此命令  
 git remote rm origin  
