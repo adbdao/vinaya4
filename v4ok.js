@@ -26,13 +26,13 @@ function addV4OK(file) {
         if (/^[^T]/.test(g[i])) {
             if (/^T/.test(g[i + 1])) {
                 // 先把行首資訊，導入標記行。無標記的行，就不處理
-                // 2021年5月後，會加入段落符號，所以改用substring()
+                // 2021年5月後，g[i] + g[i + 1]直接相加會加入段落符號，所以改用substring()
                 // k[i] = g[i] + g[i + 1]
                 k[i] = g[i].substring(0, (g[i].length - 1)) + g[i + 1].substring(0, (g[i + 1].indexOf('║')))
 
                 // 刪除行末文字
                 // m[i]準備轉另一個HTML的陣列
-                m[i] = k[i] = k[i].replace(/鉢/g, '缽').replace(/徧/g, '遍').replace(/麁/g, '粗').replace(/磔/g, '搩').replace(/虫/g, '蟲').replace(/污/g, '汙')
+                m[i] = k[i] = k[i].replace(/鉢/g, '缽').replace(/徧/g, '遍').replace(/麁/g, '粗').replace(/磔/g, '搩').replace(/虫/g, '蟲').replace(/污/g, '汙').replace(/靺/g, '襪').replace(/偷羅遮/g, '偷蘭遮')
                 // 準備轉另一個Accelon3的XML的陣列，加入一個內嵌的<有>，頻次檢索時，呈現才不會差一行
                 x[i] = m[i].replace(/^([^T]+)T(\d+)n\d+\_p0*(\d+\w)(\d+)/, '<聯 i="taisho?$2p$3\#$4"><有>$1</有></聯>　<聯 i="rdg2011?$2p$3\#$4">校勘版</聯>')
                 // 在行內加上<章節>樹狀目錄無法呈現內容，必須分行
