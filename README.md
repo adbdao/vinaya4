@@ -21,6 +21,7 @@ https://drive.google.com/drive/u/0/folders/13CjFXUassdCKPtt3rXQnIfX-vxteq09f
   
 2 下載"四分律綱目檢索.html"，先輸入關鍵字查詢。再點選條目，會自動複製「行首資訊」位置。再開啟CBReader貼上，連結到經文位置。  
 > 就是多了一個手動貼上「行首資訊」的動作  
+>* 點選文字，可直接連結到CBETAonline。(2021年底新增)  
   
 3 下載"v4search.adb"，Accelon3包含以上兩種功能，放入你的Accelon3資料夾中，  
 > 但同一目錄中，要有taisho.adb或rdg2011.adb兩個《大正藏》的adb檔，才能連結到經文！  

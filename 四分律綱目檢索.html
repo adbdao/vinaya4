@@ -112,7 +112,14 @@ var ArrLi = ["","序 四分律T22n1428_p0567a03","	緣起 制戒緣起T22n1428_p
                 if (k) {
                     // 建立div
                     var g = document.createElement('div')
-                    g.innerHTML = k
+                    // 建立連結<a>
+                    var gA = document.createElement('a')
+                    gA.innerHTML = k
+                    // 建立連結到CBETAonline
+                    gA.setAttribute('href', 'https://cbetaonline.dila.edu.tw/zh/' + k.replace(/^[^T]+/, ''))
+                    // 加入div
+                    g.appendChild(gA)
+
                     // 加入data*名稱，才可動態查詢，有了這個屬性，可以用 CSS 來獲取
                     g.setAttribute('data-title', k.toLowerCase())
                     // 以行首，來區分上下層的綱目樣式
@@ -133,7 +140,8 @@ var ArrLi = ["","序 四分律T22n1428_p0567a03","	緣起 制戒緣起T22n1428_p
                     i.onclick = function () {
                         // 無法直接複製div的內容，所以先複製到一個文本框中
                         // 要用this
-                        Tcopy.value = this.innerHTML.replace(/^[^T]+/, '')
+                        // 這個正規式比較麻煩
+                        Tcopy.value = this.innerHTML.replace(/^[^T]+(T\w+)\".+/, '$1')
 
                         // 結束時選取並複製文本框中的內容，無法複製div
                         Tcopy.select()
