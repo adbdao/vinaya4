@@ -5,13 +5,13 @@ var path = require('path')
 // 配合timeEnd()成對出現。 打印出代碼執行的時間
 console.time('共耗費了')
 
-// 標記好的檔案，轉為cbreader的xml目錄、html網頁檔、Accelon3的XML檔。以便閱讀、搜尋
+// 標記好的檔案，轉為cbreader的xml目錄、html網頁檔、Accelon3的XML檔、Accelon2017的cor檔。以便閱讀、搜尋
 // 設定共用函數
 function addV4OK(file) {
     // 讀取index的檔案，並導入陣列
     var g = fs.readFileSync(file, 'utf8').split('\n')
     // 準備轉另一個HTML,XML的陣列
-    var k = [], m = [], x = [], ZZ, PP1, PP2, PP3
+    var k = [], m = [], x = [], ZZ, PP1, PP2, PP3, cor = [], pus
 
     // 用for of來轉換二維陣列都失敗，可能在node.js中，都必須用最原始的for循環，及最簡單的正規式
     // 轉換內容
@@ -33,6 +33,23 @@ function addV4OK(file) {
                 // 刪除行末文字
                 // m[i]準備轉另一個HTML的陣列
                 m[i] = k[i] = k[i].replace(/鉢/g, '缽').replace(/徧/g, '遍').replace(/麁/g, '粗').replace(/磔/g, '搩').replace(/虫/g, '蟲').replace(/污/g, '汙').replace(/靺/g, '襪').replace(/偷羅遮/g, '偷蘭遮')
+
+
+                // T22n1421_p0001a03║彌沙塞部和醯五分律卷第一
+                // <聯 i="taisho?22p6b#06">
+                // 五分律T22n1421_p0006a25
+                // <k to="taisho@1p1c0500-05">彌沙塞部和</k>
+
+                // 準備轉另一個Accelon2017的XML的陣列
+                cor[i] = m[i].replace(/^([^T]+)T(\d+)n\d+\_p0*(\d+\w)(\d+)/, '<k to="taisho@$2p$3$400-03">$1</k>')
+                // 在行內加上<章節h1>樹狀目錄
+                if (/">[^\t]/.test(cor[i])) {
+                    cor[i] = '<h1>' + cor[i] + '</h1>'
+                }
+                if (/">\t[^\t]/.test(cor[i])) {
+                    cor[i] = '<h2>' + cor[i] + '</h2>'
+                }
+
                 // 準備轉另一個Accelon3的XML的陣列，加入一個內嵌的<有>，頻次檢索時，呈現才不會差一行
                 x[i] = m[i].replace(/^([^T]+)T(\d+)n\d+\_p0*(\d+\w)(\d+)/, '<聯 i="taisho?$2p$3\#$4"><有>$1</有></聯>　<聯 i="rdg2011?$2p$3\#$4">校勘版</聯>')
                 // 在行內加上<章節>樹狀目錄無法呈現內容，必須分行
@@ -202,6 +219,39 @@ function addV4OK(file) {
     var YY = '<檔 n="v4search.xml">\n<集 c="hidden" l="g,序,分,跋,會,其他,附文,經,other,xu,科判,卷,冊,編,書,章,節,類,篇,項,文,年,詩,著者,詞,人名,問,答,字,頁碼,偏右字,小字,原出處,參考書,期,編目資訊,原書分頁,相應部,藥,方,症,品,細,部畫,本文,標,頁,作者,專欄,問答,部,講,作,史,典,編輯,版本,英標,副標,英,X,圖片,拼音,斜英,面,版,表,大,日期,名,_名,甲,乙,丙,丁,戊,己,庚,辛,壬,癸,子,丑,寅,卯,辰,巳,午,未,申,酉,戌,亥,天,地,玄,黃,宇,宙,洪,荒,日,月,盈,昃,晨,宿,列,張,寒,來,暑,往,秋,收,冬,藏,閏,餘,成,歲,律,呂,調,陽,雲,騰,致,雨,露,結,為,霜,金,生,麗,水,玉,出,崑,崗,劍,號,巨,闕,珠,稱,夜,光,果,珍,李,柰,菜,重,芥,薑,海,鹹,河,淡,鱗,潛,羽,翔,龍,師,火,帝,鳥,官,人,皇,始,制,文,字,乃,服,衣,裳,推,位,讓,國,有,虞,陶,唐.">四分律綱目</集>\n<隱><樹 s="*" t="書,章,節,有.">樹狀目錄</樹></隱>\n<隱><樹 s="*有">綱目頻次檢索</樹></隱>\n<隱><樹 s="$有">綱目檢索</樹></隱>\n<隱><引>《$集;\\$有;》：「$_;」</引><摘要頭>$有;</摘要頭><參考資料 n="ency,yinshun,taixu,newest article,vinaya2np,vinaya2,ts lin,ShinMing,yugasidi,yugasidi1,wiki,verse,TXJW,ttctk,thonzu-s,thonzu,Sutanta,sila,panna,paauk,osed,lt,library,lbss,kt,gaya,dic4v33np,dic4v33,dic5v33,dic-china,color,cbeta2011,cbeta2014,age,lbm,gh,ght,aodbs,土觀宗派源流(轉為繁體),卡耐基口才學,印度佛教史(上冊)(平川彰著),和尚與哲學家_佛教與西方思想的對話,松下幸之助用人之道,法音叢書,空海大師傳,空海大師傳(轉為繁體),達摩易筋經,藏傳佛教概說(洛本仁波切),ziyu,pcd,滅苦之道,朱邦復文選,中藥小常識,minlun,chm,尊者阿迦曼傳,念住呼吸,法苑談叢,史念原始佛法,禪話禪畫,中國佛教,土觀宗派源流,弘法大師——空海,五明佛學院淨土,combdict,中華佛學學報,中華佛學研究,藏族英雄格薩爾大王,當代南傳佛教大師,TextProV6使用說明,瑜伽師地論(福嚴授課講義),攝阿毗達摩義論,清淨道論及涅槃的北二高,大史—斯里蘭卡佛教史,菩提道次第書畾,道證法師全集,南傳課誦本性恩編,bhd,cpi,ced,scdt,scd,other,上座部現代譯著,水野弘元著作選集,漢藏佛法百科光碟第二版文摘,戒律書畾,劉墉文選,tzuchi_monthly,taisho,wxzj,yulinpo,miuking,tibetan,ebst,rdg2011,網路讀書會,佛門必備課蓄本,念死無常,死亡無懼,學佛箴言,中醫書畾,中醫書畾1,中國古典醫學大全,cbeta-other2011,西藏生死書,santagavesaka,npt1,yugasidi4,VN,GuangLun,v4search,v5search."/></隱>\n<頁 id="00"/>\n<英文名>Vinaya 4 Search</英文名>\n因為閱讀三大部時，處處需連結到律藏原文，所以乾脆自訂四分律綱目，標記CBETA的行首位置，以後寫文章或閱讀時，直接可使用現成的連結點，以便連結到律藏原文\n<書>四分律綱目</書>\n' + x.join('\n').replace(/\n+/g, '\n') + '\n</檔>'
     // 寫入檔案
     fs.writeFileSync('v4search.xml', YY, 'utf8')
+
+    // 直接插入Accelon2017的標記
+    // 無法在陣列中刪除，只好轉入另一個物件中，再刪除空行，空行會增加<pb>數
+    pus = '<file>\n<article>四分律綱目</article>\n' + cor.join('\n').replace(/\n+/g, '\n') + '\n</file>'
+    // 重新加入陣列，再重新循環
+    cor = pus.split('\n')
+
+    // 加上批次頁碼
+    // 預設變量，才能累加頁碼
+    var s0 = 0
+    var s1 = 0
+    var s2 = 1
+    for (var i = 1; i < cor.length; i++) {
+        // <pb>不能寫在cor[0]之前，否則「位元組順序記號」 EF BB BF ，會跑到第2行，變成亂碼
+        // cor[i] = cor[i] + '<pb n="' + j + '"/>'
+        // 先刪除舊的<頁>標記
+        cor[i] = cor[i].replace(/<頁 id.+>/, '')
+        // 加上頁碼
+        if (/<article/.test(cor[i]) || s2 > 999) {
+            s2 = 1
+            s1++
+            cor[i] = '<pb n="' + s1 + '.' + s2 + '"/>\n' + cor[i]
+            s0 = i + 30
+        }
+        if (i == s0) {
+            s2++
+            cor[i] = '<pb n="' + s1 + '.' + s2 + '"/>\n' + cor[i]
+            s0 = i + 30
+        }
+    }
+
+    // 寫入檔案 for corpus
+    fs.writeFileSync('v4search.txt', cor.join('\n'), 'utf8')
 
     // 完成時返回通知
     console.log(file + ' is OK')
