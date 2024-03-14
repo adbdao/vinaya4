@@ -191,7 +191,7 @@ function addV5OK(file) {
     // 加上批次頁碼
     // 預設變量，才能累加頁碼
     var s0 = 0
-    var s1 = 0
+    // var s1 = 0
     var s2 = 1
     for (var i = 1; i < cor.length; i++) {
         // <pb>不能寫在cor[0]之前，否則「位元組順序記號」 EF BB BF ，會跑到第2行，變成亂碼
@@ -199,15 +199,15 @@ function addV5OK(file) {
         // 先刪除舊的<頁>標記
         cor[i] = cor[i].replace(/<頁 id.+>/, '')
         // 加上頁碼
-        if (/<article/.test(cor[i]) || s2 > 999) {
+        if (/<article/.test(cor[i]) || s2 > 1023) {
             s2 = 1
-            s1++
-            cor[i] = '<pb n="' + s1 + '.' + s2 + '"/>\n' + cor[i]
+            // s1++
+            cor[i] = '<pb n="' + s2 + '"/>\n' + cor[i]
             s0 = i + 30
         }
         if (i == s0) {
             s2++
-            cor[i] = '<pb n="' + s1 + '.' + s2 + '"/>\n' + cor[i]
+            cor[i] = '<pb n="' + s2 + '"/>\n' + cor[i]
             s0 = i + 30
         }
     }
