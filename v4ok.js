@@ -32,8 +32,16 @@ function addV4OK(file) {
 
                 // 刪除行末文字
                 // m[i]準備轉另一個HTML的陣列
-                m[i] = k[i] = k[i].replace(/鉢/g, '缽').replace(/徧/g, '遍').replace(/麁/g, '粗').replace(/磔/g, '搩').replace(/虫/g, '蟲').replace(/污/g, '汙').replace(/靺/g, '襪').replace(/偷羅遮/g, '偷蘭遮')
-
+                m[i] = k[i] = k[i]
+                    .replace(/鉢/g, '缽')
+                    .replace(/徧/g, '遍')
+                    .replace(/麁/g, '粗')
+                    .replace(/磔/g, '搩')
+                    .replace(/虫/g, '蟲')
+                    .replace(/污/g, '汙')
+                    .replace(/靺/g, '襪')
+                    .replace(/偷羅遮/g, '偷蘭遮')
+                    .replace(/痴/g, '癡')
 
                 // T22n1421_p0001a03║彌沙塞部和醯五分律卷第一
                 // <聯 i="taisho?22p6b#06">

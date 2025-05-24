@@ -32,7 +32,18 @@ function addV3OK(file) {
 
                 // 刪除行末文字
                 // m[i]準備轉另一個HTML的陣列
-                m[i] = k[i] = k[i].replace(/ 四分律/g, ' 僧祇律').replace(/鉢/g, '缽').replace(/徧/g, '遍').replace(/麁/g, '粗').replace(/磔/g, '搩').replace(/虫/g, '蟲').replace(/污/g, '汙').replace(/靺/g, '襪').replace(/偷羅遮/g, '偷蘭遮')
+                m[i] = k[i] = k[i]
+                    .replace(/ 四分律/g, ' 僧祇律')
+                    .replace(/鉢/g, '缽')
+                    .replace(/徧/g, '遍')
+                    .replace(/麁/g, '粗')
+                    .replace(/磔/g, '搩')
+                    .replace(/虫/g, '蟲')
+                    .replace(/污/g, '汙')
+                    .replace(/靺/g, '襪')
+                    .replace(/偷羅遮/g, '偷蘭遮')
+                    .replace(/痴/g, '癡')
+
 
                 // 準備轉另一個Accelon2017的XML的陣列
                 cor[i] = m[i].replace(/^([^T]+)T(\d+)n\d+\_p0*(\d+\w)(\d+)/, '<k to="taisho@$2p$3$400-03">$1</k>')
